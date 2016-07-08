@@ -4,7 +4,7 @@
   "description": "Up-to-date caniuse.com data for your slides",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "homepage": "https://github.com/una/reveal-caniuse#readme",
   "dependencies": {
     "reveal.js": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0"
   }
 }
