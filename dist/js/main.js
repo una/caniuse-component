@@ -104926,6 +104926,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var caniuse = require('caniuse-api');
 var DOMContainer = document.querySelector('#caniuse--result-list');
+var defaultImgLink = 'http://placehold.it/128';
 
 var ResultBlock = function () {
   function ResultBlock(name) {
@@ -105005,11 +105006,25 @@ var ResultBlock = function () {
       // get their infos
       // let supportMsg = 'fully supported';
       var prefixMsg = '';
+      var browserImg = defaultImgLink;
       // if !supportLevel {
       //   supportMsg == 'Not Fully Supported;
       // }
 
-      DOMContainer.innerHTML += '\n    <li class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="http://placehold.it/50"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>\n    ';
+      // select browser image
+      //https://cdnjs.cloudflare.com/ajax/libs/browser-logos/30.1.0/archive/chrome_12-48/chrome_12-48_256x256.png
+      // these should be switch statements
+      if (browserName == 'chrome') {
+        browserImg = 'https://cdnjs.cloudflare.com/ajax/libs/browser-logos/30.1.0/archive/chrome_12-48/chrome_12-48_128x128.png';
+      } else if (browserName == 'firefox') {
+        browserImg = 'https://cdnjs.cloudflare.com/ajax/libs/browser-logos/30.1.0/archive/firefox_3.5-22/firefox_3.5-22_128x128.png';
+      } else if (browserName == 'edge') {
+        browserImg = 'https://raw.githubusercontent.com/alrra/browser-logos/master/edge/edge_128x128.png';
+      } else {
+        browserImg = defaultImgLink;
+      }
+
+      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="' + browserImg + '"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>';
 
       if (isPrefixed) {
         // these should be switch statements
