@@ -104959,19 +104959,30 @@ var ResultBlock = function () {
           var browserName = browser;
           var propName = this.name;
           var returnedResult = '';
+          var supportLevel = '';
+          var isPrefixed = false;
           var supportResults = this.supportCall()[browser];
 
           if (supportResults.y) {
+            // its supported
+            supportLevel = 'full';
             returnedResult = supportResults.y;
+
+            if (supportResults.a) {
+              supportLevel = 'partial';
+            }
+
+            if (supportResults.x) {
+              isPrefixed = true;
+            }
           } else {
+            supportLevel = 'none';
             returnedResult = 'not supported';
           }
 
           console.log(browser + ' support for ' + propName + ': ' + returnedResult);
-          this.buildBlock(browserName, returnedResult);
+          this.buildBlock(browserName, returnedResult, supportLevel, isPrefixed);
         }
-
-        // return browserSupport;
       } catch (err) {
         _didIteratorError = true;
         _iteratorError = err;
@@ -104988,14 +104999,32 @@ var ResultBlock = function () {
       }
     }
   }, {
-    key: 'parseSupport',
-    value: function parseSupport(browserSupport) {}
-  }, {
     key: 'buildBlock',
-    value: function buildBlock(browserName, publishedResult) {
+    value: function buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
       // get individual browerser
       // get their infos
-      document.write('<h1 class="caniuse--browser-name">' + browserName + '</h1>\n    <img src="http://placehold.it/50"/>\n    <p class="caniuse--browser-results">' + publishedResult + '\n    ');
+      // let supportMsg = 'fully supported';
+      var prefixMsg = '';
+      // if !supportLevel {
+      //   supportMsg == 'Not Fully Supported;
+      // }
+
+      document.write('\n    <div class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="http://placehold.it/50"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>\n    ');
+
+      if (isPrefixed) {
+        // these should be switch statements
+        if (browserName == 'chrome') {
+          prefixMsg = '-webkit';
+        } else if (browserName == 'firefox') {
+          prefixMsg = '-moz';
+        } else if (browserName == 'edge') {
+          prefixMsg = '-ms';
+        };
+
+        document.write('<p class="caniuse-prefix">' + prefixMsg + '</p>');
+      }
+
+      document.write('</div>');
     }
   }]);
 
@@ -105005,7 +105034,7 @@ var ResultBlock = function () {
 // console.log(new ResultBlock('border-radius', true).allSupport());
 
 
-new ResultBlock('font-stretch', true).browserResults(['chrome', 'firefox', 'safari']);
+new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---

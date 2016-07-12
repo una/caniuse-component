@@ -21,38 +21,70 @@ class ResultBlock {
       let browserName = browser;
       let propName = this.name;
       let returnedResult = '';
+      let supportLevel = '';
+      let isPrefixed = false;
       let supportResults = this.supportCall()[browser];
 
-      if (supportResults.y) {
+      if (supportResults.y) { // its supported
+        supportLevel = 'full';
         returnedResult = supportResults.y;
+
+        if (supportResults.a) {
+          supportLevel = 'partial';
+        }
+
+        if (supportResults.x) {
+          isPrefixed = true;
+        }
       } else {
+        supportLevel = 'none';
         returnedResult = 'not supported';
       }
 
       console.log(`${browser} support for ${propName}: ${returnedResult}`);
-      this.buildBlock(browserName, returnedResult);
+      this.buildBlock(browserName, returnedResult, supportLevel, isPrefixed);
     }
-
-    // return browserSupport;
   }
 
-  parseSupport(browserSupport) {
-
-  }
-
-  buildBlock(browserName, publishedResult) {
+  buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
     // get individual browerser
     // get their infos
+    // let supportMsg = 'fully supported';
+    let prefixMsg = '';
+    // if !supportLevel {
+    //   supportMsg == 'Not Fully Supported;
+    // }
+
     document.write(
-    `<h1 class="caniuse--browser-name">${browserName}</h1>
-    <img src="http://placehold.it/50"/>
-    <p class="caniuse--browser-results">${publishedResult}
-    `)
+    `
+    <div class="support--${supportLevel}">
+      <h2 class="caniuse--browser-name">${browserName}</h2>
+      <img src="http://placehold.it/50"/>
+      <p class="caniuse--browser-results">${publishedResult}</p>
+      <p class="caniuse--support-level">${supportLevel}</p>
+    `);
+
+    if (isPrefixed) {
+      // these should be switch statements
+      if (browserName == 'chrome') {
+        prefixMsg = '-webkit';
+      }
+      else if (browserName == 'firefox') {
+        prefixMsg = '-moz';
+      }
+      else if (browserName == 'edge') {
+        prefixMsg = '-ms';
+      };
+
+      document.write(`<p class="caniuse-prefix">${prefixMsg}</p>`);
+    }
+
+    document.write('</div>');
   }
 }
 
 // console.log(new ResultBlock('border-radius', true).allSupport());
-new ResultBlock('font-stretch', true).browserResults(['chrome', 'firefox', 'safari']);
+new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---
