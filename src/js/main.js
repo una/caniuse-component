@@ -6,44 +6,53 @@ class ResultBlock {
     this.name = name;
   }
 
-  allSupport() {
-    return caniuse.getSupport(this.name)
+  supportCall() {
+    return caniuse.getSupport(this.name);
   };
 
-  specificSupport(browsers) {
+  browserResults(browsers) {
 
     // iterate through each browser and show its support via caniuse info:
     // y: Since which browser version the feature is available
     // n: Up to which browser version the feature is unavailable
     // a: Up to which browser version the feature is partially supported
     // X: Up to which browser version the feature is prefixed
-    let browserSupport = browsers.map( browser => this.allSupport()[browser]);
+    for (let browser of browsers) {
+      let browserName = browser;
+      let propName = this.name;
+      let returnedResult = '';
+      let supportResults = this.supportCall()[browser];
 
-    return browserSupport;
+      if (supportResults.y) {
+        returnedResult = supportResults.y;
+      } else {
+        returnedResult = 'not supported';
+      }
+
+      console.log(`${browser} support for ${propName}: ${returnedResult}`);
+      this.buildBlock(browserName, returnedResult);
+    }
+
+    // return browserSupport;
   }
 
   parseSupport(browserSupport) {
 
   }
 
-  buildBlock(browsers) {
+  buildBlock(browserName, publishedResult) {
     // get individual browerser
     // get their infos
-    DOMContainer.innerHTML =
-    `<table>
-      <tr>
-        // for each brower
-        <th>${browser}</th>
-      </tr>
-      <tr>
-        // browesr info
-      </tr>
-    </table>`;
+    document.write(
+    `<h1 class="caniuse--browser-name">${browserName}</h1>
+    <img src="http://placehold.it/50"/>
+    <p class="caniuse--browser-results">${publishedResult}
+    `)
   }
 }
 
 // console.log(new ResultBlock('border-radius', true).allSupport());
-console.log(new ResultBlock('border-radius', true).specificSupport(['chrome', 'firefox', 'safari']));
+new ResultBlock('font-stretch', true).browserResults(['chrome', 'firefox', 'safari']);
 
 // Outline
 // ---

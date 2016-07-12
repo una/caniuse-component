@@ -104935,36 +104935,67 @@ var ResultBlock = function () {
   }
 
   _createClass(ResultBlock, [{
-    key: 'allSupport',
-    value: function allSupport() {
+    key: 'supportCall',
+    value: function supportCall() {
       return caniuse.getSupport(this.name);
     }
   }, {
-    key: 'specificSupport',
-    value: function specificSupport(browsers) {
-      var _this = this;
-
-      console.log(browsers);
-      console.log(this.allSupport(), this.allSupport().chrome);
+    key: 'browserResults',
+    value: function browserResults(browsers) {
 
       // iterate through each browser and show its support via caniuse info:
       // y: Since which browser version the feature is available
       // n: Up to which browser version the feature is unavailable
       // a: Up to which browser version the feature is partially supported
       // X: Up to which browser version the feature is prefixed
-      var browserSupport = browsers.map(function (browser) {
-        return _this.allSupport()[browser];
-      });
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
-      return browserSupport;
+      try {
+        for (var _iterator = browsers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var browser = _step.value;
+
+          var browserName = browser;
+          var propName = this.name;
+          var returnedResult = '';
+          var supportResults = this.supportCall()[browser];
+
+          if (supportResults.y) {
+            returnedResult = supportResults.y;
+          } else {
+            returnedResult = 'not supported';
+          }
+
+          console.log(browser + ' support for ' + propName + ': ' + returnedResult);
+          this.buildBlock(browserName, returnedResult);
+        }
+
+        // return browserSupport;
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
     }
   }, {
     key: 'parseSupport',
     value: function parseSupport(browserSupport) {}
   }, {
     key: 'buildBlock',
-    value: function buildBlock() {
-      DOMContainer.innerHTML = '<table>\n      <tr>\n        <th>Firstname</th>\n      </tr>\n    </table>';
+    value: function buildBlock(browserName, publishedResult) {
+      // get individual browerser
+      // get their infos
+      document.write('<h1 class="caniuse--browser-name">' + browserName + '</h1>\n    <img src="http://placehold.it/50"/>\n    <p class="caniuse--browser-results">' + publishedResult + '\n    ');
     }
   }]);
 
@@ -104974,8 +105005,12 @@ var ResultBlock = function () {
 // console.log(new ResultBlock('border-radius', true).allSupport());
 
 
-console.log(new ResultBlock('border-radius', true).specificSupport(['chrome', 'firefox', 'safari']));
+new ResultBlock('font-stretch', true).browserResults(['chrome', 'firefox', 'safari']);
 
-// have user specify which browsers they want to use
+// Outline
+// ---
+// have user specify which browsers they want to use:
+// caniuseBuilder('prop-name', ['browser1', 'browser2', 'browser3'])
+// if prop-name is invalid, list the property options
 
 },{"caniuse-api":3}]},{},[380]);
