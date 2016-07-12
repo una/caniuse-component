@@ -8,6 +8,16 @@
 <h1>Hello World</h1>
 
 <style>
+  #caniuse--result-list {
+    display: flex;
+  }
+
+  #caniuse--result-list li {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+  }
+
   .support--partial {
     background-color: yellow;
   }
@@ -19,7 +29,7 @@
   }
 </style>
 
-<div id="caniuse-container"></div>
+<ul id="caniuse--result-list" data-propName="css-filters" data-browsers="safari firefox chrome edge"></ul>
 
 <script src="../dist/js/main.js"></script>
 </body>

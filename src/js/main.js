@@ -1,5 +1,5 @@
 const caniuse = require('caniuse-api');
-const DOMContainer = document.querySelector('#caniuse-container')
+const DOMContainer = document.querySelector('#caniuse--result-list')
 
 class ResultBlock {
   constructor(name) {
@@ -47,7 +47,7 @@ class ResultBlock {
   }
 
   buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
-    // get individual browerser
+    // get individual browser
     // get their infos
     // let supportMsg = 'fully supported';
     let prefixMsg = '';
@@ -55,14 +55,14 @@ class ResultBlock {
     //   supportMsg == 'Not Fully Supported;
     // }
 
-    document.write(
+    DOMContainer.innerHTML +=
     `
-    <div class="support--${supportLevel}">
+    <li class="support--${supportLevel}">
       <h2 class="caniuse--browser-name">${browserName}</h2>
       <img src="http://placehold.it/50"/>
       <p class="caniuse--browser-results">${publishedResult}</p>
       <p class="caniuse--support-level">${supportLevel}</p>
-    `);
+    `;
 
     if (isPrefixed) {
       // these should be switch statements
@@ -76,15 +76,25 @@ class ResultBlock {
         prefixMsg = '-ms';
       };
 
-      document.write(`<p class="caniuse-prefix">${prefixMsg}</p>`);
+      `<p class="caniuse-prefix">${prefixMsg}</p>`;
     }
 
-    document.write('</div>');
+    `</li>`;
   }
 }
 
-// console.log(new ResultBlock('border-radius', true).allSupport());
-new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
+// Read the DOM to initiate
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    let name = DOMContainer.getAttribute('data-propName');
+    let browsers = DOMContainer.getAttribute('data-browsers').split(' ');
+    console.log(name, browsers);
+    new ResultBlock(name, true).browserResults(browsers)
+  }
+};
+
+// call it in code:
+// new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---

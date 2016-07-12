@@ -104925,7 +104925,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var caniuse = require('caniuse-api');
-var DOMContainer = document.querySelector('#caniuse-container');
+var DOMContainer = document.querySelector('#caniuse--result-list');
 
 var ResultBlock = function () {
   function ResultBlock(name) {
@@ -105001,7 +105001,7 @@ var ResultBlock = function () {
   }, {
     key: 'buildBlock',
     value: function buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
-      // get individual browerser
+      // get individual browser
       // get their infos
       // let supportMsg = 'fully supported';
       var prefixMsg = '';
@@ -105009,7 +105009,7 @@ var ResultBlock = function () {
       //   supportMsg == 'Not Fully Supported;
       // }
 
-      document.write('\n    <div class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="http://placehold.it/50"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>\n    ');
+      DOMContainer.innerHTML += '\n    <li class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="http://placehold.it/50"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>\n    ';
 
       if (isPrefixed) {
         // these should be switch statements
@@ -105021,20 +105021,30 @@ var ResultBlock = function () {
           prefixMsg = '-ms';
         };
 
-        document.write('<p class="caniuse-prefix">' + prefixMsg + '</p>');
+        '<p class="caniuse-prefix">' + prefixMsg + '</p>';
       }
 
-      document.write('</div>');
+      '</li>';
     }
   }]);
 
   return ResultBlock;
 }();
 
-// console.log(new ResultBlock('border-radius', true).allSupport());
+// Read the DOM to initiate
 
 
-new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
+document.onreadystatechange = function () {
+  if (document.readyState === 'complete') {
+    var name = DOMContainer.getAttribute('data-propName');
+    var browsers = DOMContainer.getAttribute('data-browsers').split(' ');
+    console.log(name, browsers);
+    new ResultBlock(name, true).browserResults(browsers);
+  }
+};
+
+// call it in code:
+// new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---
