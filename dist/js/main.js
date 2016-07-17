@@ -104978,7 +104978,7 @@ var ResultBlock = function () {
             }
           } else {
             supportLevel = 'none';
-            returnedResult = 'not supported';
+            returnedResult = 'no support';
           }
 
           console.log(browser + ' support for ' + propName + ': ' + returnedResult);
@@ -105002,14 +105002,8 @@ var ResultBlock = function () {
   }, {
     key: 'buildBlock',
     value: function buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
-      // get individual browser
-      // get their infos
-      // let supportMsg = 'fully supported';
       var prefixMsg = '';
       var browserImg = defaultImgLink;
-      // if !supportLevel {
-      //   supportMsg == 'Not Fully Supported;
-      // }
 
       // select browser image
       //https://cdnjs.cloudflare.com/ajax/libs/browser-logos/30.1.0/archive/chrome_12-48/chrome_12-48_256x256.png
@@ -105024,7 +105018,7 @@ var ResultBlock = function () {
         browserImg = defaultImgLink;
       }
 
-      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <img class="caniuse--browser-img" src="' + browserImg + '"/>\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n      <p class="caniuse--support-level">' + supportLevel + '</p>';
+      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <img class="caniuse--browser-img" src="' + browserImg + '"/>\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n      <p class="caniuse--support-level">' + supportLevel + ' support</p>';
 
       if (isPrefixed) {
         // these should be switch statements
