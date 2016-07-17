@@ -1,0 +1,76 @@
+$color--warn: #fdd968; // partial support
+$color--success: #a3e176; // full support
+$color--error: #e96363; // no support
+$color--text--light: #fff; // text color on dark backgrounds
+$color--text--dark: #000; // text color on light backgrounds
+
+$font-stack: 'Open Sans', 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+$font__browser--size: 32px;
+$font__version--size: 24px;
+$font__meta--size: 18px;
+$border-radius: 5px;
+$li-margin: 10px;
+$icon-width: 60%;
+
+// Text Contrast Mixin
+// Determines font color based
+// on background color
+$contrast-settings: (
+  'light-color': $color--text--light,
+  'dark-color': $color--text--dark
+);
+
+@mixin contrast-me($bg-color) {
+  @if lightness($bg-color) < 60% {
+    color: map-get($contrast-settings, 'light-color');
+  } @else {
+    color: map-get($contrast-settings, 'dark-color');
+  }
+
+  background-color: $bg-color;
+}
+
+#caniuse--result-list {
+  display: flex;
+  font-family: $font-stack;
+
+  li {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+    border-radius: $border-radius;
+    margin: $li-margin;
+    padding: $li-margin;
+  }
+
+  .caniuse {
+    &--browser-img {
+      margin-top: $li-margin*2;
+      width: $icon-width;
+    }
+
+    &--browser-name {
+      font-size: $font__browser--size;
+      line-height: .75;
+    }
+
+    &--browser-results {
+      font-size: $font__version--size;
+      line-height: 0;
+    }
+
+    &--support-level {
+      font-size: $font__meta--size;
+    }
+  }
+
+  .support--partial {
+    @include contrast-me($color--warn);
+  }
+  .support--full {
+    @include contrast-me($color--success);
+  }
+  .support--none {
+    @include contrast-me($color--error);
+  }
+}

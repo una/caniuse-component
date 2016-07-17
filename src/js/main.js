@@ -72,9 +72,9 @@ class ResultBlock {
 
     DOMContainer.innerHTML +=
      `<li class="support--${supportLevel}">
+      <img class="caniuse--browser-img" src="${browserImg}"/>
       <h2 class="caniuse--browser-name">${browserName}</h2>
-      <img src="${browserImg}"/>
-      <p class="caniuse--browser-results">${publishedResult}</p>
+      <h3 class="caniuse--browser-results">${publishedResult}</h3>
       <p class="caniuse--support-level">${supportLevel}</p>`
 
     if (isPrefixed) {

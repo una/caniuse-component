@@ -105024,7 +105024,7 @@ var ResultBlock = function () {
         browserImg = defaultImgLink;
       }
 
-      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <img src="' + browserImg + '"/>\n      <p class="caniuse--browser-results">' + publishedResult + '</p>\n      <p class="caniuse--support-level">' + supportLevel + '</p>';
+      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <img class="caniuse--browser-img" src="' + browserImg + '"/>\n      <h2 class="caniuse--browser-name">' + browserName + '</h2>\n      <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n      <p class="caniuse--support-level">' + supportLevel + '</p>';
 
       if (isPrefixed) {
         // these should be switch statements

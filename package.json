@@ -4,7 +4,9 @@
   "description": "Up-to-date caniuse.com data for your slides",
   "main": "index.js",
   "scripts": {
-    "dev": "watchify src/js/main.js -t babelify --outfile dist/js/main.js"
+    "js": "watchify src/js/main.js -t babelify --outfile dist/js/main.js",
+    "styles": "node-sass -w src/scss -o dist/styles --output-style compressed",
+    "dev": "npm run js & npm run styles"
   },
   "repository": {
     "type": "git",
