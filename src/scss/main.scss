@@ -1,6 +1,6 @@
-$color--warn: #fdd968; // partial support
-$color--success: #a3e176; // full support
-$color--error: #e96363; // no support
+$color--warn: #ffc307; // partial support
+$color--success: #19cc69; // full support
+$color--error: #de2a2a; // no support
 $color--text--light: #fff; // text color on dark backgrounds
 $color--text--dark: #000; // text color on light backgrounds
 
@@ -8,7 +8,7 @@ $font-stack: 'Open Sans', 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
 $font__browser--size: 32px;
 $font__version--size: 24px;
 $font__meta--size: 18px;
-$border-radius: 5px;
+$border-radius: 2px;
 $li-margin: 10px;
 $icon-width: 60%;
 
@@ -21,7 +21,7 @@ $contrast-settings: (
 );
 
 @mixin contrast-me($bg-color) {
-  @if lightness($bg-color) < 60% {
+  @if lightness($bg-color) < 40% {
     color: map-get($contrast-settings, 'light-color');
   } @else {
     color: map-get($contrast-settings, 'dark-color');
@@ -33,6 +33,8 @@ $contrast-settings: (
 #caniuse--result-list {
   display: flex;
   font-family: $font-stack;
+  margin: 0;
+  padding: 0;
 
   li {
     flex: 1;
