@@ -36,8 +36,8 @@ Then, include this element on your page:
 | name | function | usage | options |
 |--- |--- |--- |--- |
 | **id** | Applies styles to list | `id="caniuse--result-list"` | You only get one option unless you make your own |
-| **propName** | CSS Property Name | `data-propName="css-filters"` | See [Caniuse API](https://github.com/nyalab/caniuse-api) |
-| **browsers** | Browsers to check support from | `data-browsers="firefox chrome safari"`  | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [logos ](https://github.com/alrra/browser-logos) |
+| **propName** | CSS Property Name | `data-propName="css-filters"` | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [options](https://github.com/Fyrd/caniuse/tree/master/features-json) |
+| **browsers** | Browsers to check support from | `data-browsers="firefox chrome safari"`  | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [logos](https://github.com/alrra/browser-logos) |
 
 
 ## Development & Contribution

@@ -20,9 +20,7 @@ class ResultBlock {
     // X: Up to which browser version the feature is prefixed
     for (let browser of browsers) {
       const browserName = browser;
-      const propName = this.name;
-      let returnedResult = '';
-      let supportLevel = '';
+      let returnedResult, supportLevel;
       let isPrefixed = false;
       const supportResults = this.supportCall()[browser];
 
@@ -47,13 +45,17 @@ class ResultBlock {
   }
 
   buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
+    let prefixMsg;
 
-    let prefixMsg = '';
+    // IE rewrites
+    if (browserName === 'ie') {
+      browserName = 'internet-explorer';
+    }
 
     DOMContainer.innerHTML +=
      `<li class="support--${supportLevel}">
       <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/${browserName}/${browserName}_256x256.png"/>
-      <h2 class="caniuse--browser-name">${browserName.replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();})}</h2>
+      <h2 class="caniuse--browser-name">${browserName.replace(/-/g, ' ').replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();})}</h2>
       <h3 class="caniuse--browser-results">${publishedResult}</h3>
       <p class="caniuse--support-level">support: ${supportLevel}</p>`;
 

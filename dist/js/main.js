@@ -104958,9 +104958,8 @@ var ResultBlock = function () {
           var browser = _step.value;
 
           var browserName = browser;
-          var propName = this.name;
-          var returnedResult = '';
-          var supportLevel = '';
+          var returnedResult = void 0,
+              supportLevel = void 0;
           var isPrefixed = false;
           var supportResults = this.supportCall()[browser];
 
@@ -105001,10 +105000,14 @@ var ResultBlock = function () {
   }, {
     key: 'buildBlock',
     value: function buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
+      var prefixMsg = void 0;
 
-      var prefixMsg = '';
+      // IE rewrites
+      if (browserName === 'ie') {
+        browserName = 'internet-explorer';
+      }
 
-      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/' + browserName + '/' + browserName + '_256x256.png"/>\n      <h2 class="caniuse--browser-name">' + browserName.replace(/(^|\s)[a-z]/g, function (f) {
+      DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n      <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/' + browserName + '/' + browserName + '_256x256.png"/>\n      <h2 class="caniuse--browser-name">' + browserName.replace(/-/g, ' ').replace(/(^|\s)[a-z]/g, function (f) {
         return f.toUpperCase();
       }) + '</h2>\n      <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n      <p class="caniuse--support-level">support: ' + supportLevel + '</p>';
 
