@@ -4,13 +4,12 @@ $color--error: #de2a2a; // no support
 $color--text--light: #fff; // text color on dark backgrounds
 $color--text--dark: #000; // text color on light backgrounds
 
-$font-stack: 'Open Sans', 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
 $font__browser--size: 32px;
 $font__version--size: 24px;
 $font__meta--size: 18px;
 $border-radius: 2px;
 $li-margin: 10px;
-$icon-width: 60%;
+$icon-width: 120px;
 
 // Text Contrast Mixin
 // Determines font color based
@@ -33,7 +32,7 @@ $contrast-settings: (
 #caniuse--result-list {
   display: flex;
   flex-wrap: wrap;
-  font-family: $font-stack;
+  font-family: inherit;
   margin: 0;
   padding: 0;
 
@@ -49,6 +48,7 @@ $contrast-settings: (
   .caniuse {
     &--browser-img {
       width: $icon-width;
+      height: $icon-width;
       margin: $li-margin*2 auto 0;
     }
 

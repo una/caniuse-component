@@ -8,22 +8,7 @@
   "globals": {
     "window": true,
     "define": true,
-    "module": true,
-    "DO": true,
-    "TimelineMax": true,
-    "TweenMax": true,
-    "Expo": true,
-    "Power0": true,
-    "Elastic": true,
-    "Back": true,
-    "ScrollMagic": true,
-    "Draggable": true,
-    "Flickity": true,
-    "Cookies": true,
-    "Layzr": true,
-    "$": true,
-    "analytics": true,
-    "Mailcheck": true
+    "$": true
   },
   "env": {
     "node": true,

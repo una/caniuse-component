@@ -19,16 +19,16 @@ class ResultBlock {
     // a: Up to which browser version the feature is partially supported
     // X: Up to which browser version the feature is prefixed
     for (let browser of browsers) {
-      let browserName = browser;
-      let propName = this.name;
+      const browserName = browser;
+      const propName = this.name;
       let returnedResult = '';
       let supportLevel = '';
       let isPrefixed = false;
-      let supportResults = this.supportCall()[browser];
+      const supportResults = this.supportCall()[browser];
 
       if (supportResults.y) { // its supported
         supportLevel = 'full';
-        returnedResult = supportResults.y;
+        returnedResult = supportResults.y + '+';
 
         if (supportResults.a) {
           supportLevel = 'partial';
@@ -50,19 +50,29 @@ class ResultBlock {
   buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
 
     // request the browser icon
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE) {
         let prefixMsg = '';
-        let browserImg = xhr.responseText;
+        let browserImg = '';
+
+        // capitalizing Browser name
+        browserName = browserName.replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();});
+
+        // error handling
+        if (xhr.status == 404) {
+          browserImg = defaultImgLink;
+        } else {
+          browserImg = xhr.responseText;
+        }
 
         DOMContainer.innerHTML +=
          `<li class="support--${supportLevel}">
           <div class="caniuse--browser-img">${browserImg}</div>
           <h2 class="caniuse--browser-name">${browserName}</h2>
           <h3 class="caniuse--browser-results">${publishedResult}</h3>
-          <p class="caniuse--support-level">${supportLevel} support</p>`;
+          <p class="caniuse--support-level">support: ${supportLevel}</p>`;
 
         if (isPrefixed) {
           // these should be switch statements
@@ -92,15 +102,12 @@ class ResultBlock {
 // Read the DOM to initiate
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
-    let name = DOMContainer.getAttribute('data-propName');
-    let browsers = DOMContainer.getAttribute('data-browsers').split(' ');
+    const name = DOMContainer.getAttribute('data-propName');
+    const browsers = DOMContainer.getAttribute('data-browsers').split(' ');
     console.log(name, browsers);
     new ResultBlock(name, true).browserResults(browsers);
   }
 };
-
-// call it in code:
-// new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---

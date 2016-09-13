@@ -7,6 +7,17 @@ Instant, up-to-date, and theme-able browser statistics for your presentations (s
 - automatic browser logos & caniuse data
 - not compatible with IE 6/7
 
+## Usage
+
+Your browser logo options are [here](https://github.com/alrra/browser-logos).
+
+- chrome
+- firefox
+- opera
+- edge
+
+Your feature icons are based on the [Caniuse API](https://github.com/nyalab/caniuse-api)
+
 ## Development & Contribution
 
 To develop: `npm run dev`
