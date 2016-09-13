@@ -104926,7 +104926,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var caniuse = require('caniuse-api');
 var DOMContainer = document.querySelector('#caniuse--result-list');
-var defaultImgLink = 'http://placehold.it/128';
+var defaultIcon = "<svg height='150px' width='150px' viewBox='0 0 200 200' x='0px' y='0px'> <circle cx='75' cy='75' fill='#000' r='75'></circle> <circle class='eye' cx='53' cy='65' fill='#FFF' r='8.5'></circle> <circle class='eye' cx='97' cy='65' fill='#FFF' r='8.5'></circle> <path d='M99.9,103.8 c0,0-9.8,9.2-25.4,9.2s-24.4-9.2-24.4-9.2' fill='none' stroke-linecap='round' stroke-miterlimit='10' stroke-width='6' stroke='#FFF'></path></svg>";
 
 var ResultBlock = function () {
   function ResultBlock(name) {
@@ -105018,7 +105018,7 @@ var ResultBlock = function () {
 
           // error handling
           if (xhr.status == 404) {
-            browserImg = defaultImgLink;
+            browserImg = defaultIcon;
           } else {
             browserImg = xhr.responseText;
           }
@@ -105051,7 +105051,7 @@ var ResultBlock = function () {
   return ResultBlock;
 }();
 
-// Read the DOM to initiate
+// Read the DOM and initiate based on data props
 
 
 document.onreadystatechange = function () {
@@ -105062,11 +105062,5 @@ document.onreadystatechange = function () {
     new ResultBlock(name, true).browserResults(browsers);
   }
 };
-
-// Outline
-// ---
-// have user specify which browsers they want to use:
-// caniuseBuilder('prop-name', ['browser1', 'browser2', 'browser3'])
-// if prop-name is invalid, list the property options
 
 },{"caniuse-api":3}]},{},[380]);

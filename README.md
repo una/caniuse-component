@@ -16,7 +16,23 @@ Your browser logo options are [here](https://github.com/alrra/browser-logos).
 - opera
 - edge
 
-Your feature icons are based on the [Caniuse API](https://github.com/nyalab/caniuse-api)
+Your feature options are based on the [Caniuse API](https://github.com/nyalab/caniuse-api)
+
+You just need to include this element on your page:
+
+```
+<ul id="caniuse--result-list"
+    data-propName="css-filters"
+    data-browsers="opera safari firefox chrome edge">
+</ul>
+```
+
+| name | function | usage | options |
+|--- |--- |--- |--- |
+| **id** | Applies styles to list | `id="caniuse--result-list"` | You only get one option unless you make your own |
+| **propName** | CSS Property Name | `data-propName="css-filters"` | See [Caniuse API](https://github.com/nyalab/caniuse-api) |
+| **browsers** | Browsers to check support from | `data-browsers="firefox chrome safari"`  | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [logos ](https://github.com/alrra/browser-logos) |
+
 
 ## Development & Contribution
 
