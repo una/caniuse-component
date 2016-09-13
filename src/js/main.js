@@ -1,6 +1,6 @@
 const caniuse = require('caniuse-api');
 const DOMContainer = document.querySelector('#caniuse--result-list');
-const defaultIcon = "<svg height='150px' width='150px' viewBox='0 0 200 200' x='0px' y='0px'> <circle cx='75' cy='75' fill='#000' r='75'></circle> <circle class='eye' cx='53' cy='65' fill='#FFF' r='8.5'></circle> <circle class='eye' cx='97' cy='65' fill='#FFF' r='8.5'></circle> <path d='M99.9,103.8 c0,0-9.8,9.2-25.4,9.2s-24.4-9.2-24.4-9.2' fill='none' stroke-linecap='round' stroke-miterlimit='10' stroke-width='6' stroke='#FFF'></path></svg>";
+const defaultIcon = "<svg height='120px' width='120px' viewBox='0 0 150 150' x='0px' y='0px'> <circle cx='75' cy='75' fill='#000' r='75'></circle> <circle class='eye' cx='53' cy='65' fill='#FFF' r='8.5'></circle> <circle class='eye' cx='97' cy='65' fill='#FFF' r='8.5'></circle> <path d='M99.9,103.8 c0,0-9.8,9.2-25.4,9.2s-24.4-9.2-24.4-9.2' fill='none' stroke-linecap='round' stroke-miterlimit='10' stroke-width='6' stroke='#FFF'></path></svg>";
 
 class ResultBlock {
   constructor(name) {
@@ -42,60 +42,37 @@ class ResultBlock {
         returnedResult = 'no support';
       }
 
-      console.log(`${browser} support for ${propName}: ${returnedResult}`);
       this.buildBlock(browserName, returnedResult, supportLevel, isPrefixed);
     }
   }
 
   buildBlock(browserName, publishedResult, supportLevel, isPrefixed) {
 
-    // request the browser icon
-    const xhr = new XMLHttpRequest();
+    let prefixMsg = '';
 
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == XMLHttpRequest.DONE) {
-        let prefixMsg = '';
-        let browserImg = '';
+    DOMContainer.innerHTML +=
+     `<li class="support--${supportLevel}">
+      <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/${browserName}/${browserName}_256x256.png"/>
+      <h2 class="caniuse--browser-name">${browserName.replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();})}</h2>
+      <h3 class="caniuse--browser-results">${publishedResult}</h3>
+      <p class="caniuse--support-level">support: ${supportLevel}</p>`;
 
-        // capitalizing Browser name
-        browserName = browserName.replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();});
-
-        // error handling
-        if (xhr.status == 404) {
-          browserImg = defaultIcon;
-        } else {
-          browserImg = xhr.responseText;
-        }
-
-        DOMContainer.innerHTML +=
-         `<li class="support--${supportLevel}">
-          <div class="caniuse--browser-img">${browserImg}</div>
-          <h2 class="caniuse--browser-name">${browserName}</h2>
-          <h3 class="caniuse--browser-results">${publishedResult}</h3>
-          <p class="caniuse--support-level">support: ${supportLevel}</p>`;
-
-        if (isPrefixed) {
-          // these should be switch statements
-          if (browserName == 'chrome') {
-            prefixMsg = '-webkit';
-          }
-          else if (browserName == 'firefox') {
-            prefixMsg = '-moz';
-          }
-          else if (browserName == 'edge') {
-            prefixMsg = '-ms';
-          }
-
-          `<p class="caniuse-prefix">${prefixMsg}</p>`;
-        }
-
-        `</li>`;
+    if (isPrefixed) {
+      // these should be switch statements
+      if (browserName == 'chrome') {
+        prefixMsg = '-webkit';
       }
-    };
+      else if (browserName == 'firefox') {
+        prefixMsg = '-moz';
+      }
+      else if (browserName == 'edge') {
+        prefixMsg = '-ms';
+      }
 
-    xhr.open('GET', `https://raw.githubusercontent.com/alrra/browser-logos/master/${browserName}/${browserName}.svg`, true);
+      `<p class="caniuse-prefix">${prefixMsg}</p>`;
+    }
 
-    xhr.send(null);
+    `</li>`;
   }
 }
 
@@ -104,7 +81,6 @@ document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
     const name = DOMContainer.getAttribute('data-propName');
     const browsers = DOMContainer.getAttribute('data-browsers').split(' ');
-    console.log(name, browsers);
     new ResultBlock(name, true).browserResults(browsers);
   }
 }

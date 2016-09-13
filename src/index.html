@@ -6,16 +6,28 @@
   <link rel="stylesheet" href="../dist/styles/main.css">
 </head>
 <body>
-<h1>Hello World</h1>
 
 <!-- style only for page purposes -->
 <style>
   body {
-    font-family: 'Open Sans';
+    font-family: 'San Francisco', 'Open Sans', serif ;
+  }
+
+  .container {
+    width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
   }
 </style>
 
-<ul id="caniuse--result-list" data-propName="css-filters" data-browsers="opera safari firefox chrome edge"></ul>
+<div class="container">
+  <h1>Browser Support: CSS Filters</h1>
+
+  <ul id="caniuse--result-list" data-propName="css-filters" data-browsers="opera safari firefox chrome edge mobile-safari"></ul>
+</div>
 
 <script src="../dist/js/main.js"></script>
 </body>

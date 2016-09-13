@@ -9,16 +9,22 @@ Instant, up-to-date, and theme-able browser statistics for your presentations (s
 
 ## Usage
 
-Your browser logo options are [here](https://github.com/alrra/browser-logos).
+To use this with [Reveal.js](#), download the distributed js and css file, then apply it as a plugin:
 
-- chrome
-- firefox
-- opera
-- edge
+```
+Reveal.initialize({
+  // setup things here:
+  // ...
 
-Your feature options are based on the [Caniuse API](https://github.com/nyalab/caniuse-api)
+  // plugins here:
+  dependencies: [
+    { src: 'plugin/caniuse/main.js' },
+    { src: 'plugin/caniuse/main.css' }
+  ]
+});
+```
 
-You just need to include this element on your page:
+Then, include this element on your page:
 
 ```
 <ul id="caniuse--result-list"

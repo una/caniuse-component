@@ -37,19 +37,19 @@ $contrast-settings: (
   padding: 0;
 
   li {
+    border-radius: $border-radius;
     flex: 1;
     list-style: none;
-    text-align: center;
-    border-radius: $border-radius;
     margin: $li-margin;
     padding: $li-margin;
+    text-align: center;
   }
 
   .caniuse {
     &--browser-img {
-      width: $icon-width;
       height: $icon-width;
-      margin: $li-margin*2 auto 0;
+      margin: $li-margin * 2 auto 0;
+      width: $icon-width;
     }
 
     &--browser-name {
@@ -70,9 +70,11 @@ $contrast-settings: (
   .support--partial {
     @include contrast-me($color--warn);
   }
+
   .support--full {
     @include contrast-me($color--success);
   }
+
   .support--none {
     @include contrast-me($color--error);
   }
