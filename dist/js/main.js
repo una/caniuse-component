@@ -104967,7 +104967,7 @@ var ResultBlock = function () {
           if (supportResults.y) {
             // its supported
             supportLevel = 'full';
-            returnedResult = supportResults.y;
+            returnedResult = supportResults.y + '+';
 
             if (supportResults.a) {
               supportLevel = 'partial';
@@ -105009,9 +105009,21 @@ var ResultBlock = function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           var prefixMsg = '';
-          var browserImg = xhr.responseText;
+          var browserImg = '';
 
-          DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n          <div class="caniuse--browser-img">' + browserImg + '</div>\n          <h2 class="caniuse--browser-name">' + browserName + '</h2>\n          <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n          <p class="caniuse--support-level">' + supportLevel + ' support</p>';
+          // capitalizing Browser name
+          browserName = browserName.replace(/(^|\s)[a-z]/g, function (f) {
+            return f.toUpperCase();
+          });
+
+          // error handling
+          if (xhr.status == 404) {
+            browserImg = defaultImgLink;
+          } else {
+            browserImg = xhr.responseText;
+          }
+
+          DOMContainer.innerHTML += '<li class="support--' + supportLevel + '">\n          <div class="caniuse--browser-img">' + browserImg + '</div>\n          <h2 class="caniuse--browser-name">' + browserName + '</h2>\n          <h3 class="caniuse--browser-results">' + publishedResult + '</h3>\n          <p class="caniuse--support-level">support: ' + supportLevel + '</p>';
 
           if (isPrefixed) {
             // these should be switch statements
@@ -105050,9 +105062,6 @@ document.onreadystatechange = function () {
     new ResultBlock(name, true).browserResults(browsers);
   }
 };
-
-// call it in code:
-// new ResultBlock('css-filters', true).browserResults(['chrome', 'firefox', 'safari', 'edge']);
 
 // Outline
 // ---
