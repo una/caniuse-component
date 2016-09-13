@@ -52,29 +52,48 @@ class ResultBlock {
       browserName = 'internet-explorer';
     }
 
-    DOMContainer.innerHTML +=
-     `<li class="support--${supportLevel}">
-      <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/${browserName}/${browserName}_256x256.png"/>
-      <h2 class="caniuse--browser-name">${browserName.replace(/-/g, ' ').replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();})}</h2>
-      <h3 class="caniuse--browser-results">${publishedResult}</h3>
-      <p class="caniuse--support-level">support: ${supportLevel}</p>`;
-
-    if (isPrefixed) {
-      // these should be switch statements
-      if (browserName == 'chrome') {
-        prefixMsg = '-webkit';
-      }
-      else if (browserName == 'firefox') {
-        prefixMsg = '-moz';
-      }
-      else if (browserName == 'edge') {
-        prefixMsg = '-ms';
-      }
-
-      `<p class="caniuse-prefix">${prefixMsg}</p>`;
+    // check if theres a level of support
+    function supportText(supportLevel) {
+      if (supportLevel != 'none') {
+        return `<p class="caniuse--support-level">${supportLevel}</p>`;
+      } else return '';
     }
 
-    `</li>`;
+    // check if there is a prefix
+    function prefixText(isPrefixed) {
+      if (isPrefixed) {
+        // these should be switch statements
+        if (browserName === 'chrome' || browserName === 'safari') {
+          prefixMsg = '-webkit-';
+        }
+        else if (browserName === 'firefox') {
+          prefixMsg = '-moz-';
+        }
+        else if (browserName === 'edge' || browserName === 'ie') {
+          prefixMsg = '-ms-';
+        }
+        else if (browserName === 'opera') {
+          prefixMsg = '-o-';
+        }
+
+        return `<p class="caniuse-prefix">${prefixMsg}</p>`;
+      } else {
+        if (supportLevel != 'none') {
+          return `<p class="caniuse-prefix">no prefix</p>`;
+        } else {
+          return '';
+        }
+      }
+    }
+
+    DOMContainer.innerHTML +=
+      `<li class="support--${supportLevel}">
+        <img class="caniuse--browser-img" src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/${browserName}/${browserName}_256x256.png"/>
+        <h2 class="caniuse--browser-name">${browserName.replace(/-/g, ' ').replace(/(^|\s)[a-z]/g, (f) => {return f.toUpperCase();})}</h2>
+        <h3 class="caniuse--browser-results">${publishedResult}</h3>
+        ${supportText(supportLevel)}
+        ${prefixText(isPrefixed)}
+      </li>`;
   }
 }
 

@@ -9,6 +9,12 @@ Instant, up-to-date, and theme-able browser statistics for your presentations (s
 
 ## Usage
 
+### Node Implementation
+
+Install via NPM: `npm install caniuse-component`;
+
+### Reveal.js Implementation
+
 To use this with [Reveal.js](#), download the distributed js and css file, then apply it as a plugin:
 
 ```
@@ -18,8 +24,8 @@ Reveal.initialize({
 
   // plugins here:
   dependencies: [
-    { src: 'plugin/caniuse/main.js' },
-    { src: 'plugin/caniuse/main.css' }
+    { src: 'plugin/caniuseComponent/scripts.js' },
+    { src: 'plugin/caniuseComponent/styles.css' }
   ]
 });
 ```
@@ -37,7 +43,7 @@ Then, include this element on your page:
 |--- |--- |--- |--- |
 | **id** | Applies styles to list | `id="caniuse--result-list"` | You only get one option unless you make your own |
 | **propName** | CSS Property Name | `data-propName="css-filters"` | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [options](https://github.com/Fyrd/caniuse/tree/master/features-json) |
-| **browsers** | Browsers to check support from | `data-browsers="firefox chrome safari"`  | See [Caniuse API](https://github.com/nyalab/caniuse-api) and [logos](https://github.com/alrra/browser-logos) |
+| **browsers** | Browsers to check support from | `data-browsers="firefox chrome safari"`  | `edge`, `chrome`, `safari`, `ie`, `firefox`, `opera` |
 
 
 ## Development & Contribution

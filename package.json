@@ -2,15 +2,15 @@
   "name": "caniuse-component",
   "version": "0.1.0",
   "description": "Up-to-date caniuse.com data for your slides",
-  "main": "index.js",
+  "main": "caniuseComponent/scripts.js",
   "scripts": {
     "js": "watchify src/scripts.js -t babelify --outfile caniuseComponent/scripts.js",
-    "styles": "node-sass -w src/style.scss -o caniuseComponent/ --output-style compressed",
+    "styles": "node-sass -w src/ -o caniuseComponent/ --output-style compressed",
     "dev": "npm run js & npm run styles"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/una/reveal-caniuse.git"
+    "url": "git+https://github.com/una/caniuse-component.git"
   },
   "keywords": [
     "reveal.js",
@@ -21,9 +21,9 @@
   "author": "Una Kravets",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/una/reveal-caniuse/issues"
+    "url": "https://github.com/una/caniuse-component/issues"
   },
-  "homepage": "https://github.com/una/reveal-caniuse#readme",
+  "homepage": "https://github.com/una/caniuse-component#readme",
   "dependencies": {
     "caniuse-api": "^1.5.0",
     "reveal.js": "^3.3.0"
