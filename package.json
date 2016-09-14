@@ -1,11 +1,11 @@
 {
   "name": "caniuse-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Up-to-date caniuse.com data for your slides",
-  "main": "caniuseComponent/scripts.js",
+  "main": "./scripts.js",
   "scripts": {
-    "js": "watchify src/scripts.js -t babelify --outfile caniuseComponent/scripts.js",
-    "styles": "node-sass -w src/ -o caniuseComponent/ --output-style compressed",
+    "js": "watchify src/scripts.js -t babelify --outfile ./scripts.js",
+    "styles": "node-sass -w src/ -o ./ --output-style compressed",
     "dev": "npm run js & npm run styles"
   },
   "repository": {

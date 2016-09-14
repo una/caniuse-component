@@ -15,7 +15,7 @@ Install via NPM: `npm install caniuse-component`;
 
 ### Reveal.js Implementation
 
-To use this with [Reveal.js](#), download the distributed js and css file, then apply it as a plugin:
+To use this with [Reveal.js](#), npm install, then apply this source as a plugin:
 
 ```
 Reveal.initialize({
@@ -24,8 +24,8 @@ Reveal.initialize({
 
   // plugins here:
   dependencies: [
-    { src: 'plugin/caniuseComponent/scripts.js' },
-    { src: 'plugin/caniuseComponent/styles.css' }
+    { src: '../node_modules/caniuse-component/scripts.js', async: true },
+    { src: '../node_modules/caniuse-component/style.css' }
   ]
 });
 ```
@@ -48,8 +48,9 @@ Then, include this element on your page:
 
 ## Development & Contribution
 
-To develop: `npm run dev`
-To contribute: Please clone this down and submit a PR, or open an issue.
+NPM scripts are used as the build system, so to develop, run: `npm run dev`. Consumable files are distributed in the root, and source files live within `/src`.
+
+To contribute: Please clone this down and submit a PR, or open an issue. 😘
 
 ## Credits
 
