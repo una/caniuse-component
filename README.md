@@ -2,6 +2,8 @@
 
 Instant, up-to-date, and theme-able browser statistics for your presentations (so you don't have to update your slides the night before!)
 
+### [Here is a Demo 😄](http://una.im/caniuse-component/)
+
 - customizable style based on a variable system
 - adaptive text color based on background [source](http://codepen.io/una/pen/oXgRYz)
 - automatic browser logos & caniuse data
@@ -11,7 +13,7 @@ Instant, up-to-date, and theme-able browser statistics for your presentations (s
 
 ### Node Implementation
 
-Install via NPM: `npm install caniuse-component`;
+Install via NPM: `npm install caniuse-component` -- include the js and css source.
 
 ### Reveal.js Implementation
 
@@ -25,7 +27,7 @@ Reveal.initialize({
   // plugins here:
   dependencies: [
     { src: '../node_modules/caniuse-component/scripts.js', async: true },
-    { src: '../node_modules/caniuse-component/style.css' }
+    { src: '../node_modules/caniuse-component/styles.css' }
   ]
 });
 ```
