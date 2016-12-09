@@ -1,0 +1,26 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:engine.io-client:20160426':
+    - reveal.js > socket.io > socket.io-client > engine.io-client:
+        patched: '2016-12-09T20:12:08.633Z'
+  'npm:minimatch:20160620':
+    - reveal.js > grunt-cli > findup-sync > glob > minimatch:
+        patched: '2016-12-09T20:12:08.633Z'
+  'npm:ms:20151024':
+    - reveal.js > socket.io > debug > ms:
+        patched: '2016-12-09T20:12:08.633Z'
+    - reveal.js > socket.io > engine.io > debug > ms:
+        patched: '2016-12-09T20:12:08.633Z'
+    - reveal.js > socket.io > socket.io-client > engine.io-client > debug > ms:
+        patched: '2016-12-09T20:12:08.633Z'
+    - reveal.js > socket.io > socket.io-adapter > debug > ms:
+        patched: '2016-12-09T20:12:08.633Z'
+  'npm:negotiator:20160616':
+    - reveal.js > express > accepts > negotiator:
+        patched: '2016-12-09T20:12:08.633Z'
+  'npm:ws:20160104':
+    - reveal.js > socket.io > engine.io > ws:
+        patched: '2016-12-09T20:12:08.633Z'
+    - reveal.js > socket.io > socket.io-client > engine.io-client > ws:
+        patched: '2016-12-09T20:12:08.633Z'
