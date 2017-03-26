@@ -12,7 +12,7 @@ class ResultBlock {
   }
 
   browserResults(browsers) {
-
+ 
     // iterate through each browser and show its support via caniuse info:
     // y: Since which browser version the feature is available
     // n: Up to which browser version the feature is unavailable
