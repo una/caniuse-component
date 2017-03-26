@@ -17,7 +17,7 @@ Install via NPM: `npm install caniuse-component` -- include the js and css sourc
 
 ### Reveal.js Implementation
 
-To use this with [Reveal.js](#), npm install, then apply this source as a plugin:
+To use this with [Reveal.js](https://github.com/hakimel/reveal.js/), npm install, then apply this source as a plugin:
 
 ```
 Reveal.initialize({
