@@ -19,7 +19,7 @@ Install via NPM: `npm install caniuse-component` -- include the js and css sourc
 
 To use this with [Reveal.js](https://github.com/hakimel/reveal.js/), npm install, then apply this source as a plugin:
 
-```
+```js
 Reveal.initialize({
   // setup things here:
   // ...
@@ -34,7 +34,7 @@ Reveal.initialize({
 
 Then, include this element on your page:
 
-```
+```html
 <ul id="caniuse--result-list"
     data-propName="css-filters"
     data-browsers="opera safari firefox chrome edge">
