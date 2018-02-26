@@ -1,6 +1,6 @@
 {
   "name": "caniuse-component",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Up-to-date caniuse.com data for your slides",
   "main": "./scripts.js",
   "scripts": {
@@ -26,13 +26,13 @@
   },
   "homepage": "https://github.com/una/caniuse-component#readme",
   "dependencies": {
-    "caniuse-api": "^1.5.3",
+    "caniuse-api": "^2.0.0",
     "reveal.js": "^3.4.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-es2015": "^6.24.0",
-    "babelify": "^7.3.0",
+    "babelify": "^8.0.0",
     "watchify": "^3.9.0"
   }
 }
