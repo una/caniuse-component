@@ -27,7 +27,7 @@
   "homepage": "https://github.com/una/caniuse-component#readme",
   "dependencies": {
     "caniuse-api": "^2.0.0",
-    "reveal.js": "^3.4.1"
+    "reveal.js": "^4.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
