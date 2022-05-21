@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/una/caniuse-component#readme",
   "dependencies": {
-    "caniuse-api": "^2.0.0",
+    "caniuse-api": "^3.0.0",
     "reveal.js": "^3.4.1"
   },
   "devDependencies": {
