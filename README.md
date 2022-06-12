@@ -2,10 +2,10 @@
 
 Instant, up-to-date, and theme-able browser statistics for your presentations (so you don't have to update your slides the night before!)
 
-### [Here is a Demo 😄](http://una.im/caniuse-component/)
+### [Here is a Demo 😄](https://una.im/caniuse-component/)
 
 - customizable style based on a variable system
-- adaptive text color based on background [source](http://codepen.io/una/pen/oXgRYz)
+- adaptive text color based on background [source](https://codepen.io/una/pen/oXgRYz)
 - automatic browser logos & caniuse data
 - not compatible with IE 6/7
 
